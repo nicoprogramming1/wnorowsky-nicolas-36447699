@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Menu.master.cs" Inherits="wnorowsky_nicolas_36447699.Menu" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:HyperLink ID="HyperLink1" runat="server">HyperLink</asp:HyperLink>
+        &nbsp;-
+            <asp:HyperLink ID="HyperLink2" runat="server">HyperLink</asp:HyperLink>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div>
+            Autor: Nicolás Wnorowsky - TP4 - Analista en Sistemas
+        </div>
+    </form>
+</body>
+</html>
