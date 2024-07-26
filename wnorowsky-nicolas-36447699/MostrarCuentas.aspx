@@ -6,6 +6,8 @@
         <Columns>
             <asp:BoundField DataField="idCuenta" HeaderText="idCuenta" InsertVisible="False" ReadOnly="True" SortExpression="idCuenta" />
             <asp:BoundField DataField="descripcion" HeaderText="descripcion" SortExpression="descripcion" />
+            <asp:BoundField DataField="fecha" HeaderText="fecha" SortExpression="fecha" />
+            <asp:BoundField DataField="monto" HeaderText="monto" SortExpression="monto" />
             <asp:BoundField DataField="Saldo" HeaderText="Saldo" ReadOnly="True" SortExpression="Saldo" />
         </Columns>
         <FooterStyle BackColor="White" ForeColor="#333333" />
@@ -21,10 +23,13 @@
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:clase4ConnectionString %>" SelectCommand="SELECT 
     c.id AS idCuenta,
     c.descripcion, 
-    SUM(m.monto * CASE WHEN m.tipo = 'D' THEN 1 ELSE -1 END) AS Saldo
+    m.fecha, 
+    m.monto,
+    SUM(m.monto * CASE WHEN m.tipo = 'D' THEN 1 ELSE -1 END) OVER (PARTITION BY c.id) AS Saldo
 FROM MovimientosContables m
 INNER JOIN Cuentas c ON m.idCuenta = c.id
-GROUP BY c.id, c.descripcion;
+ORDER BY c.id, m.fecha;
+
 
 "></asp:SqlDataSource>
 </asp:Content>

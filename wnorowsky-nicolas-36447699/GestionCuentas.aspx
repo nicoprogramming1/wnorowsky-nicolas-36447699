@@ -6,6 +6,9 @@
 <asp:TextBox ID="TextBoxDescripcion" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxDescripcion" ErrorMessage="Requerido" ForeColor="Red"></asp:RequiredFieldValidator>
 <br />
+    <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+    <asp:DropDownList ID="DropDownList1" runat="server">
+    </asp:DropDownList>
 <br />
 <asp:Button ID="ButtonAdd" runat="server" OnClick="ButtonAdd_Click" Text="Add" />
 <asp:Button ID="ButtonUpdate" runat="server" Text="Update" OnClick="ButtonUpdate_Click" />

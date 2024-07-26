@@ -53,7 +53,7 @@ namespace wnorowsky_nicolas_36447699
 
         protected void GridViewMovimientos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TextBoxFecha.Text = GridViewMovimientos.SelectedRow.Cells[1].Text;
+            TextBoxFecha.Text = DateTime.Parse(GridViewMovimientos.SelectedRow.Cells[1].Text).ToString("yyyy-MM-dd");
             TextBoxMonto.Text = GridViewMovimientos.SelectedRow.Cells[2].Text;
             TextBoxTipo.Text = GridViewMovimientos.SelectedRow.Cells[3].Text;
             DropDownListCuentas.SelectedValue = GridViewMovimientos.SelectedRow.Cells[4].Text;
