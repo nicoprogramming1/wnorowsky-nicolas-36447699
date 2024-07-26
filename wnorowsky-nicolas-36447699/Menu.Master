@@ -12,9 +12,11 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:HyperLink ID="HyperLink1" runat="server">HyperLink</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/GestionCuentas.aspx">Gestión de Cuentas</asp:HyperLink>
         &nbsp;-
-            <asp:HyperLink ID="HyperLink2" runat="server">HyperLink</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/GestionMovimientosContables.aspx">Gestion de Movimientos</asp:HyperLink>
+&nbsp;-
+            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/MostrarCuentas.aspx">Mostrar cuentas</asp:HyperLink>
         </div>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
