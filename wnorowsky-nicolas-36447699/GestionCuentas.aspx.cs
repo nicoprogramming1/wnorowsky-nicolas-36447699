@@ -12,25 +12,14 @@ namespace wnorowsky_nicolas_36447699
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GridViewCuentas.DataBind();
+            if (!IsPostBack)
+            {
+                DropDownList1.DataBind();
+            }
         }
 
         protected void ButtonAdd_Click(object sender, EventArgs e)
         {
-
-            /*
-            int result = SqlDataSourceCuentasCRUD.Insert();
-            if (result > 0)
-            {
-                LabelResult.Text = $"Se insertaron {result} registro/s";
-                GridViewCuentas.DataBind();
-            }
-            else
-            {
-                LabelResult.Text = $"No se insertaron registros";
-            }
-            TextBoxDescripcion.Text = string.Empty;
-            */
 
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["cadena"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connectionString);
@@ -40,24 +29,11 @@ namespace wnorowsky_nicolas_36447699
             SqlCommand sqlCommand = new SqlCommand(addUser, sqlConnection);
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
-            
+            DropDownList1.DataBind();
         }
 
         protected void ButtonUpdate_Click(object sender, EventArgs e)
         {
-            /*
-            int result = SqlDataSourceCuentasCRUD.Update();
-            if (result > 0)
-            {
-                LabelResult.Text = $"Se modificaron {result} registro/s";
-                GridViewCuentas.DataBind();
-            }
-            else
-            {
-                LabelResult.Text = $"No se modificaron registros";
-            }
-            TextBoxDescripcion.Text = string.Empty;
-            */
 
             string descripcion = TextBoxDescripcion.Text;
 
@@ -65,16 +41,46 @@ namespace wnorowsky_nicolas_36447699
             SqlConnection sqlConnection = new SqlConnection(connectionString);
 
             sqlConnection.Open();
-            string updateUser = $"UPDATE Cuentas SET descripcion = '{descripcion}' WHERE id = '{id}'";
+            string updateUser = $"UPDATE Cuentas SET descripcion = '{descripcion}' WHERE id = '{DropDownList1.SelectedValue}'";
             SqlCommand sqlCommand = new SqlCommand(updateUser, sqlConnection);
             sqlCommand.ExecuteNonQuery();
             DropDownList1.DataBind();
             sqlConnection.Close();
         }
 
-        protected void GridViewCuentas_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ButtonDelete_Click(object sender, EventArgs e)
         {
-            TextBoxDescripcion.Text = GridViewCuentas.SelectedRow.Cells[1].Text;
+            string cuenta = DropDownList1.SelectedValue.ToString();
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["cadena"].ConnectionString;
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+
+            sqlConnection.Open();
+            string deleteCuenta = $"delete from Cuentas where id = '{cuenta}'";
+            SqlCommand sqlCommand = new SqlCommand(deleteCuenta, sqlConnection);
+            sqlCommand.ExecuteNonQuery();
+            DropDownList1.DataBind();
+
+            sqlConnection.Close();
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = DropDownList1.SelectedValue.ToString();
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["cadena"].ConnectionString;
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+
+            sqlConnection.Open();
+            string selectUserById = $"select descripcion from Cuentas where id = '{id}'";
+            SqlCommand sqlCommand = new SqlCommand(selectUserById, sqlConnection);
+            SqlDataReader cuenta = sqlCommand.ExecuteReader();
+
+            if (cuenta.Read())
+            {
+                TextBoxDescripcion.Text = cuenta["descripcion"].ToString();
+            }
+            sqlConnection.Close();
         }
     }
 }

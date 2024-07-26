@@ -78,6 +78,15 @@ namespace wnorowsky_nicolas_36447699
         protected global::System.Web.UI.WebControls.Button ButtonUpdate;
 
         /// <summary>
+        /// Control ButtonDelete.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonDelete;
+
+        /// <summary>
         /// Control LabelResult.
         /// </summary>
         /// <remarks>
@@ -85,15 +94,6 @@ namespace wnorowsky_nicolas_36447699
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelResult;
-
-        /// <summary>
-        /// Control GridViewCuentas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewCuentas;
 
         /// <summary>
         /// Control SqlDataSourceCuentasCRUD.
